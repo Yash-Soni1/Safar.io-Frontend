@@ -10,21 +10,21 @@ type AuthModalProps = {
 };
 
 export default function AuthModal({ isOpen, type, onClose }: AuthModalProps) {
-  const [role, setRole] = useState<"rider" | "driver" | null>(null);
+  const [role, setRole] = useState<"rider" | "captain" | null>(null);
   const navigate = useNavigate();
 
   if (!isOpen) return null;
 
-  const handleSelectRole = (selectedRole: "rider" | "driver") => {
+  const handleSelectRole = (selectedRole: "rider" | "captain") => {
     setRole(selectedRole);
 
     if (type === "signup" && selectedRole === "rider") {
       navigate("/userSignup");
-    } else if (type === "signup" && selectedRole === "driver") {
+    } else if (type === "signup" && selectedRole === "captain") {
       navigate("/captainSignup");
     } else if (type === "signin" && selectedRole === "rider") {
       navigate("/userSignin");
-    } else if (type === "signin" && selectedRole === "driver") {
+    } else if (type === "signin" && selectedRole === "captain") {
       navigate("/captainSignin");
     }
 
@@ -57,10 +57,10 @@ export default function AuthModal({ isOpen, type, onClose }: AuthModalProps) {
           </button>
 
           <button
-            onClick={() => handleSelectRole("driver")}
+            onClick={() => handleSelectRole("captain")}
             className="px-6 py-3 rounded-md bg-green-500 text-white font-medium hover:bg-green-600 transition duration-200"
           >
-            {type === "signin" ? "Sign in as Driver" : "Sign up as Driver"}
+            {type === "signin" ? "Sign in as Captain" : "Sign up as Captain"}
           </button>
         </div>
       </div>
